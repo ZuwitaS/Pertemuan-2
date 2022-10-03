@@ -4,32 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercise</title>
+    <title>Exercise Modifikasi</title>
     <style>
         body{
-            border: 10px;
-            border-style: dashed;
             background: linear-gradient(#e66465, #9198e5);
             background-attachment: fixed;
             text-align: center;
             font-size: 20px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }  
     </style>
 </head>
 <body>
-    <h1>Punny web</h1>
-    <p>WESTLIFE</p>
-    <input type="text-area" id="masuk"  placeholder="lyric" >    
-    <p> jumlah kata : <span id="kata"> </p>
+    <h1>Punny Web</h1>
+    <h3 id="artis"></h3>
+    <input type="text" placeholder="" id="song" class="text-center form-control" oninput="cariLagu()"><br>
+    <p id="lirik"></p>
+    <span class="card-text text-muted bg-white border rounded p-1">
+        Jumlah Karakter : <span id="count"></span>
+    </span>
 
     <script>
-        let input = document.getElementById("masuk")
-        let kata = document.getElementById("kata")
+        function cariLagu() {
+            let lirik_lagu = {
+                status : true, 
+                data   : {
+                    artis    : "Westlife", 
+                    judul : "I Have A Dream", 
+                    lirik: "I have a dream, a song to sing To help me cope with anything If you see the wonder (wonder) of a fairy tale\nYou can take the future even if you fail"
+                }
+            }
 
-        input.addEventListener("input", ()=>{
-            kata.innerText=input.value.split(" ").length-1
-        })
+            let artis = document.getElementById("artis")
+            let judul = document.getElementById("judul")
+            let lirik = document.getElementById("lirik")
+            let count = document.getElementById("count")
+
+            let artis_content = lirik_lagu.data.artis
+            let judul_content = lirik_lagu.data.judul
+            let lirik_content = lirik_lagu.data.lirik.replaceAll("\n", " <br>")
+
+            let song = document.getElementById("song").value
+
+            if (song.toLowerCase().trim() == "i have a dream") {
+                artis.innerHTML = artis_content
+                lirik.innerHTML = lirik_content
+                count.innerHTML = lirik_content.length
+            }
+            else {
+                artis.innerHTML = ""
+                lirik.innerHTML = ""
+                count.innerHTML = song.length
+            }
+        }
+
     </script>
 </body>
 </html>
